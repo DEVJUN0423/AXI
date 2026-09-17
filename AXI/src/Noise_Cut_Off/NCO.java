@@ -199,7 +199,7 @@ class FileManager extends TextManager{
 				Path source = Paths.get("src/Noise_Cut_Off/json/test" + smallFileName + ".json");
 				// 변경할 파일 이름
 			    Path target = source.resolveSibling("test" + changeFileName +".json");
-			 // 메모해둔 source 위치의 파일을 target 이름으로 실제로 변경(Rename)해라!
+			    // 메모해둔 source 위치의 파일을 target 이름으로 실제로 변경(Rename)해라!
 			    try {
 			        Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
 			        // System.out.println("[DEBUG] 이름 변경 성공: " + source.getFileName() + " -> " + target.getFileName());
@@ -221,7 +221,44 @@ class FileManager extends TextManager{
 		}
 	}
 }
+class Regex extends JsonReader {
+    JsonReader reader = new JsonReader();
+    
+    // 바깥쪽 ArrayList는 파일들, 안쪽 ArrayList는 그 파일의 단어들을 담는 2차원 가변 배열
+    ArrayList<ArrayList<String>> fileWordList = new ArrayList<>();
+    
+    String RegexWolrd = "(은|는|이|가|을|를|과|와|에|에서|로|으로)$";
 
+    // 2차원 가변 문자열 배열에 조사와 뜨어쓰기를 제거한 단어만 저장하는 함수
+    void worldSelecter() throws IOException, ParseException {
+        fileWordList.clear(); // 실행 전 초기화
+
+        for(int i = 1; i <= reader.fileCount(); i++) {
+            // 1. 이번 파일의 단어들을 담을 '새로운 1차원 가변 배열'을 생성합니다.
+            ArrayList<String> singleFileWords = new ArrayList<>();
+            
+            String fullText = reader.rawText(i);
+            String[] tokens = fullText.split("\\s+"); // 띄어쓰기로 분리
+            
+            for(String token : tokens) {
+                String cleanedWord = token.replaceAll(RegexWolrd, "");
+                if(!cleanedWord.isEmpty()) {
+                    // 2. 현재 파일 전용 배열에 조사가 제거된 단어를 넣습니다.
+                    singleFileWords.add(cleanedWord);
+                }
+            }
+            // 3. 파일 한 개의 단어 수집이 끝나면, 이를 전체 2차원 배열에 한 행(Row)으로 추가합니다.
+            fileWordList.add(singleFileWords);
+        }
+        // 최종 2차원 배열 출력
+        // System.out.println(fileWordList);
+        for(int i =0; i<=reader.fileCount()-1; i++) {
+            System.out.println(i + " " + fileWordList.get(i));
+        }
+    }
+    
+    
+}
 public class NCO {
 
 	public static void main(String[] args) 
@@ -229,6 +266,7 @@ public class NCO {
 		
         JsonReader reader = new JsonReader();
         FileManager manager = new FileManager();
+        Regex worldNormal = new Regex();
         
 		int setcount = reader.fileCount(); //메시지를 보낸 횟수 = 저장된 파일 개수
         
@@ -237,11 +275,13 @@ public class NCO {
 			String rawtext = reader.rawText(i);
 			// json rawtext 보는 print
 	        // System.out.println("text: " + rawtext);
-	        // rawtext 의미 없는 파일 제거 함수
+	        // rawtext 의미 없는 파일 제거 리스트 생성 함수
 	        manager.textsum(i, rawtext);
 		}
 		// 정규화 탈락 파일 제거 + 파일 이름 정리
 		manager.removeFile();
+		
+		worldNormal.worldSelecter();
 	}
 
 }
@@ -271,7 +311,6 @@ perf	성능 개선
 chore	빌드 업무 수정, 패키지 매니저 수정 (gitignore 수정 등)
 rename	파일 혹은 폴더명을 수정만 한 경우
 remove	파일을 삭제만 한 경우
-
 
 관련 이슈
 사용 시점	사용 키워드
