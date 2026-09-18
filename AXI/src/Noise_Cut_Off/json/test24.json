@@ -1,7 +1,7 @@
 {
-  "test_id": "test29",
-  "app_package": "com.naver.band",
-  "raw_sender": "사용자_29",
-  "raw_text": "asdfghjk",
-  "received_at": 1788935619000
+  "test_id" : "test29",
+  "app_package" : "com.naver.band",
+  "raw_sender" : "사용자_29",
+  "raw_text" : "[asdfghjk]",
+  "received_at" : 1788935619000
 }

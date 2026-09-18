@@ -1,7 +1,7 @@
 {
-  "test_id": "test82",
-  "app_package": "com.kakao.talk",
-  "raw_sender": "사용자_82",
-  "raw_text": "이번주 주말에 시간 괜찮아?",
-  "received_at": 1788935672000
+  "test_id" : "test82",
+  "app_package" : "com.kakao.talk",
+  "raw_sender" : "사용자_82",
+  "raw_text" : "[이번주, 주말, 시간, 괜찮아?]",
+  "received_at" : 1788935672000
 }

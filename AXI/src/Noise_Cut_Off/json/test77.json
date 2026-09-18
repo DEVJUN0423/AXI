@@ -1,7 +1,7 @@
 {
-  "test_id": "test93",
-  "app_package": "com.naver.band",
-  "raw_sender": "사용자_93",
-  "raw_text": "내일 예약 확인 부탁드립니다.",
-  "received_at": 1788935683000
+  "test_id" : "test93",
+  "app_package" : "com.naver.band",
+  "raw_sender" : "사용자_93",
+  "raw_text" : "[내일, 예약, 확인, 부탁드립니다.]",
+  "received_at" : 1788935683000
 }

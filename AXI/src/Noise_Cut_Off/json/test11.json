@@ -1,7 +1,7 @@
 {
-  "test_id": "test14",
-  "app_package": "com.kakao.talk",
-  "raw_sender": "사용자_14",
-  "raw_text": "m9n8b7",
-  "received_at": 1788935604000
+  "test_id" : "test14",
+  "app_package" : "com.kakao.talk",
+  "raw_sender" : "사용자_14",
+  "raw_text" : "[m9n8b7]",
+  "received_at" : 1788935604000
 }

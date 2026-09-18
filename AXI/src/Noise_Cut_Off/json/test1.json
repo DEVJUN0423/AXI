@@ -1,7 +1,7 @@
 {
-  "test_id": "test1",
-  "app_package": "com.naver.band",
-  "raw_sender": "사용자_1",
-  "raw_text": "오늘 회비 15000원 신한 계좌로 부탁해",
-  "received_at": 1788935591000
+  "test_id" : "test1",
+  "app_package" : "com.naver.band",
+  "raw_sender" : "사용자_1",
+  "raw_text" : "[오늘, 회비, 15000원, 신한, 계좌, 부탁해]",
+  "received_at" : 1788935591000
 }

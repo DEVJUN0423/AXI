@@ -1,7 +1,7 @@
 {
-  "test_id": "test88",
-  "app_package": "com.kakao.talk",
-  "raw_sender": "사용자_88",
-  "raw_text": "도착하면 연락해줘!",
-  "received_at": 1788935678000
+  "test_id" : "test88",
+  "app_package" : "com.kakao.talk",
+  "raw_sender" : "사용자_88",
+  "raw_text" : "[도착하면, 연락해줘!]",
+  "received_at" : 1788935678000
 }
