@@ -1,7 +1,7 @@
 {
-  "test_id" : "test66",
+  "test_id" : "test74",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_66",
-  "raw_text" : "[인스타, 아이디, 전달해주시면, 확인해볼게요]",
-  "received_at" : 1788935656000
+  "raw_sender" : "안소희",
+  "raw_text" : "[날씨, 너무, 좋은데, 산책이나, 하러, 갈까?]",
+  "received_at" : 1788940032000
 }

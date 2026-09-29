@@ -1,7 +1,7 @@
 {
-  "test_id" : "test64",
+  "test_id" : "test73",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_64",
-  "raw_text" : "[오늘, 회비, 15000원, 신한, 계좌, 부탁해]",
-  "received_at" : 1788935654000
+  "raw_sender" : "정현우",
+  "raw_text" : "[지금, 버스, 타고, 가고, 있어서, 10분, 정도, 늦, 것, 같아, ㅠㅠ]",
+  "received_at" : 1788939972000
 }

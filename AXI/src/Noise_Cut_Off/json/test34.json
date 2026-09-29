@@ -1,7 +1,7 @@
 {
-  "test_id" : "test42",
+  "test_id" : "test52",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_42",
-  "raw_text" : "[오늘, 저녁, 6시, 강남역, 11번, 출구, 볼까?]",
-  "received_at" : 1788935632000
+  "raw_sender" : "윤도현",
+  "raw_text" : "[인스타, 아이디, 전달해주시면, 확인해볼게요]",
+  "received_at" : 1788938712000
 }

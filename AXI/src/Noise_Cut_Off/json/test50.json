@@ -1,7 +1,7 @@
 {
-  "test_id" : "test60",
+  "test_id" : "test70",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_60",
-  "raw_text" : "[도착하면, 연락해줘!]",
-  "received_at" : 1788935650000
+  "raw_sender" : "오태양",
+  "raw_text" : "[기지개, 좀, 켜고, 쉬었다, 하자, 너무, 오래, 앉아있었어]",
+  "received_at" : 1788939792000
 }

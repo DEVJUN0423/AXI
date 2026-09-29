@@ -1,7 +1,7 @@
 {
-  "test_id" : "test28",
+  "test_id" : "test34",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_28",
-  "raw_text" : "[오늘, 저녁, 6시, 강남역, 11번, 출구, 볼까?]",
-  "received_at" : 1788935618000
+  "raw_sender" : "박지훈",
+  "raw_text" : "[날씨, 너무, 좋은데, 산책이나, 하러, 갈까?]",
+  "received_at" : 1788937632000
 }

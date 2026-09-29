@@ -1,7 +1,7 @@
 {
-  "test_id" : "test7",
-  "app_package" : "com.naver.band",
-  "raw_sender" : "사용자_7",
-  "raw_text" : "[오늘, 저녁, 6시, 강남역, 11번, 출구, 볼까?]",
-  "received_at" : 1788935597000
+  "test_id" : "test8",
+  "app_package" : "com.kakao.talk",
+  "raw_sender" : "윤도현",
+  "raw_text" : "[내일, 예약, 확인, 부탁드립니다.]",
+  "received_at" : 1788936072000
 }

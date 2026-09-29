@@ -1,7 +1,7 @@
 {
-  "test_id" : "test85",
-  "app_package" : "com.naver.band",
-  "raw_sender" : "사용자_85",
-  "raw_text" : "[오늘, 회비, 15000원, 신한, 계좌, 부탁해]",
-  "received_at" : 1788935675000
+  "test_id" : "test100",
+  "app_package" : "com.kakao.talk",
+  "raw_sender" : "강지원",
+  "raw_text" : "[날씨, 너무, 좋은데, 산책이나, 하러, 갈까?]",
+  "received_at" : 1788941592000
 }

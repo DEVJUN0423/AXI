@@ -1,7 +1,7 @@
 {
-  "test_id" : "test44",
+  "test_id" : "test54",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_44",
-  "raw_text" : "[zxcvbnm]",
-  "received_at" : 1788935634000
+  "raw_sender" : "권성민",
+  "raw_text" : "[날씨, 너무, 좋은데, 산책이나, 하러, 갈까?]",
+  "received_at" : 1788938832000
 }

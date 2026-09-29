@@ -1,7 +1,7 @@
 {
-  "test_id" : "test40",
+  "test_id" : "test49",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_40",
-  "raw_text" : "[이번주, 주말, 시간, 괜찮아?]",
-  "received_at" : 1788935630000
+  "raw_sender" : "김민수",
+  "raw_text" : "[회의록, 정리해서, 메일, 공유드렸습니다., 확인, 부탁드립니다.]",
+  "received_at" : 1788938532000
 }

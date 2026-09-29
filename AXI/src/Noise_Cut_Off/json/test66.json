@@ -1,7 +1,7 @@
 {
-  "test_id" : "test80",
+  "test_id" : "test93",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "사용자_80",
-  "raw_text" : "[부재중, 전화]",
-  "received_at" : 1788935670000
+  "raw_sender" : "서준혁",
+  "raw_text" : "[안녕]",
+  "received_at" : 1788941172000
 }
