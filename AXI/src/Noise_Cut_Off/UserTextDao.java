@@ -38,7 +38,6 @@ public class UserTextDao {
                     return rs.getInt(1);
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             // 실제 서비스에선 로거(Logger)로 교체 추천

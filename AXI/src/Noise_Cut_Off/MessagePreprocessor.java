@@ -22,13 +22,14 @@ import java.nio.file.StandardCopyOption;
 
 class JsonReader {
 	// json 파일 보낸 메시지 불러오기 함수
-	String rawText (int getnum) 
+	String rawText (String type, int getnum) 
 	throws IOException, ParseException {
 		JSONParser parser = new JSONParser();
 		try (Reader reader = new FileReader("src/Noise_Cut_Off/json/test" + getnum + ".json");){
+//			/Users/yanghyunjun/git/AXI/AXI/src/Noise_Cut_Off/json/test1.json 임시 상대 경로
 			JSONObject jsonObject = (JSONObject) parser.parse(reader);	
 			
-			String rawtext = (String) jsonObject.get("raw_text");
+			String rawtext = (String) jsonObject.get(type);
 			return rawtext;
 		}
 	}
@@ -126,14 +127,14 @@ class FileManager extends TextManager{
 	// 제거할 파일 리스트 값 표시 함수 
 	void listRemovePrint () {
 		listSize = removeList.size();
-		System.out.print("[DEBUG] 제거할 파일 리스트 값 [");
+//		System.out.print("[DEBUG] 제거할 파일 리스트 값 [");
 		for (int i =0; i <= listSize-1; i++) {
 			int temp =0;
 			temp = removeList.get(i);
-			System.out.print(temp + ", ");
+//			System.out.print(temp + ", ");
 		}
-		System.out.print("]");
-		System.out.println();
+//		System.out.print("]");
+//		System.out.println();
 	}
 	// 파일명 출력 함수
 	
@@ -143,27 +144,27 @@ class FileManager extends TextManager{
 	    // test+숫자.json 형식의 파일만 필터링
 	    File[] files = dir.listFiles((d, name) -> name.matches("test\\d+\\.json"));
 	    
-	    System.out.print("[DEBUG] 파일 목록 [");
+//	    System.out.print("[DEBUG] 파일 목록 [");
 	    if (files != null && files.length > 0) {
 	        for (int i = 0; i < files.length; i++) {
-	            System.out.print(files[i].getName());
+//	            System.out.print(files[i].getName());
 	            
 	            // 마지막 파일이 아닐 때만 쉼표(,)를 붙여 가독성을 높입니다.
 	            if (i < files.length - 1) {
-	                System.out.print(", ");
+//	                System.out.print(", ");
 	            }
 	        }
 	    } else {
 	        System.out.print("조건에 맞는 파일이 없습니다.");
 	    }
-	    System.out.println("]");
+//	    System.out.println("]");
     }
 	//파일제거 함수 
 	void removeFile () {
 		
 		listSize = removeList.size(); //제거할 파일 번호 리스트 크기 저장
-		System.out.println("[DEGUB] 제거할 파일 번호 리스트 크기 : " + listSize);
-		System.out.println("[DEGUB] 총 파일 개수: " + reader.fileCount());
+		System.out.println("[DEBUG] 제거할 파일 번호 리스트 크기 : " + listSize);
+		System.out.println("[DEBUG] 총 파일 개수: " + reader.fileCount());
 
 		// 제거할 파일 번호 리스트 가 빈리시트 시 종료
 		
@@ -179,7 +180,7 @@ class FileManager extends TextManager{
 			// 파일제거
 			File deleteFile = new File("src/Noise_Cut_Off/json/test" + removeNum + ".json");
 			deleteFile.delete();
-			System.out.println("[DEGUB] test" + removeNum +".json 제거 완료");
+//			System.out.println("[DEGUB] test" + removeNum +".json 제거 완료");
 			fileNamePrint();
 			
 			// 반복 조건 변수 설정
@@ -218,6 +219,8 @@ class FileManager extends TextManager{
 			}
 			removeList.remove(0);
 		}
+		int tempPrint = reader.fileCount()-listSize;
+		System.out.println("[DEBUG] 제거 완료한 파일 개수: "+ tempPrint);
 	}
 }
 class Regex extends JsonReader {
@@ -236,8 +239,7 @@ class Regex extends JsonReader {
         for(int i = 1; i <= reader.fileCount(); i++) {
             // 이번 파일의 단어들을 담을 '새로운 1차원 가변 배열'을 생성
             ArrayList<String> singleFileWords = new ArrayList<>();
-            
-            String fullText = reader.rawText(i);
+            String fullText = reader.rawText("raw_text", i);
             String[] tokens = fullText.split("\\s+"); // 띄어쓰기로 분리
             
             for(String token : tokens) {
@@ -253,15 +255,16 @@ class Regex extends JsonReader {
         // 최종 2차원 배열 출력
         // System.out.println(fileWordList);
         for(int i =0; i<=reader.fileCount()-1; i++) {
-            System.out.println(i + " " + fileWordList.get(i));
+//            System.out.println(i + " " + fileWordList.get(i));
         }
     }
+    // rawtext 정규화 통과 파일 저장 함수
     void renamerawtext() {
         JsonReader reader = new JsonReader();
     	for(int i = 1; i<= reader.fileCount(); i++) {
             try {
                 // 1. 파일 경로 지정 및 ObjectMapper 생성
-                File jsonFile = new File("src/Noise_Cut_Off/json/test" + i + ".json"); // 실제 파일 경로를 입력하세요.
+                File jsonFile = new File("src/Noise_Cut_Off/json/test" + i + ".json");
                 ObjectMapper mapper = new ObjectMapper();
 
                 // 2. JSON 파일을 ObjectNode로 읽어오기
@@ -273,7 +276,7 @@ class Regex extends JsonReader {
                 // 4. 수정된 내용을 다시 파일에 쓰기 (들여쓰기 포함해서 이쁘게 저장)
                 mapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, rootNode);
 
-                System.out.println("test " + i + ".JSON 파일의 raw_text가 성공적으로 수정되었습니다.");
+//                System.out.println("test " + i + ".JSON 파일의 raw_text가 성공적으로 수정되었습니다.");
 
             } catch (Exception e) {
                 e.printStackTrace();
