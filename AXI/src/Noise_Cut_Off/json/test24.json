@@ -1,7 +1,7 @@
 {
-  "test_id" : "test35",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "서준혁",
-  "raw_text" : "[왜?]",
-  "received_at" : 1788937692000
+  "text_id" : "24",
+  "app_package" : "SMS",
+  "raw_sender" : "이서윤",
+  "raw_text" : "[사, game]",
+  "msg_time" : "1781867160000"
 }

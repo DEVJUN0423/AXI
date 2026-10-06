@@ -1,7 +1,7 @@
 {
-  "test_id" : "test48",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "안소희",
-  "raw_text" : "[수신거부]",
-  "received_at" : 1788938472000
+  "text_id" : "31",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "권하은",
+  "raw_text" : "[tomorrow, 커피]",
+  "msg_time" : "1781248980000"
 }

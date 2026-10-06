@@ -1,7 +1,7 @@
 {
-  "test_id" : "test81",
+  "text_id" : "57",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "안소희",
-  "raw_text" : "[오늘, 저녁, 6시, 강남역, 11번, 출구, 볼까?]",
-  "received_at" : 1788940452000
+  "raw_sender" : "sc004_ezxw",
+  "raw_text" : "[고양, 고양]",
+  "msg_time" : "1795883820000"
 }

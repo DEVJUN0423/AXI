@@ -1,7 +1,7 @@
 {
-  "test_id" : "test88",
+  "text_id" : "63",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "송재범",
-  "raw_text" : "[인스타, 아이디, 전달해주시면, 확인해볼게요]",
-  "received_at" : 1788940872000
+  "raw_sender" : "c8d_ube4",
+  "raw_text" : "[happy, 내일]",
+  "msg_time" : "1790235120000"
 }

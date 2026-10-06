@@ -1,7 +1,7 @@
 {
-  "test_id" : "test93",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "서준혁",
-  "raw_text" : "[안녕]",
-  "received_at" : 1788941172000
+  "text_id" : "66",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "전진우",
+  "raw_text" : "[커피, hello]",
+  "msg_time" : "1774360080000"
 }

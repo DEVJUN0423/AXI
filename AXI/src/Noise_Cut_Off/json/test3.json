@@ -1,7 +1,7 @@
 {
-  "test_id" : "test4",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "정현우",
-  "raw_text" : "[수신거부]",
-  "received_at" : 1788935832000
+  "text_id" : "3",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "독고진우",
+  "raw_text" : "[tomorrow, computer]",
+  "msg_time" : "1737085500000"
 }

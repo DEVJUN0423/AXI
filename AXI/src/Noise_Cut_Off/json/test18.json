@@ -1,7 +1,7 @@
 {
-  "test_id" : "test26",
+  "text_id" : "18",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "권성민",
-  "raw_text" : "[수고]",
-  "received_at" : 1788937152000
+  "raw_sender" : "wx5eg6",
+  "raw_text" : "[happy]",
+  "msg_time" : "1778484480000"
 }

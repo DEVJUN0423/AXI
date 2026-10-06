@@ -1,7 +1,7 @@
 {
-  "test_id" : "test25",
+  "text_id" : "17",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "최유진",
-  "raw_text" : "[광고]",
-  "received_at" : 1788937092000
+  "raw_sender" : "사공서연",
+  "raw_text" : "[대상자의, 75.7%, 현재, 음주자였고,, 음주, 빈도, 월, 1회, 이하, 음주, 28.2%, 가장, 많았다.]",
+  "msg_time" : "1788504540000"
 }

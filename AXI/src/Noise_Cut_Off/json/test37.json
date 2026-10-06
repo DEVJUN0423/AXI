@@ -1,7 +1,7 @@
 {
-  "test_id" : "test55",
+  "text_id" : "37",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "임수빈",
-  "raw_text" : "[오늘, 저녁, 야근할, 것, 같은데, 먼저, 퇴근해~]",
-  "received_at" : 1788938892000
+  "raw_sender" : "pjfbgz",
+  "raw_text" : "[게임, keyboard]",
+  "msg_time" : "1759959360000"
 }

@@ -1,7 +1,7 @@
 {
-  "test_id" : "test61",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "한지민",
-  "raw_text" : "[회의록, 정리해서, 메일, 공유드렸습니다., 확인, 부탁드립니다.]",
-  "received_at" : 1788939252000
+  "text_id" : "42",
+  "app_package" : "SMS",
+  "raw_sender" : "정건우",
+  "raw_text" : "[음악, computer, 안녕하세요]",
+  "msg_time" : "1775976000000"
 }

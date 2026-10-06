@@ -1,7 +1,7 @@
 {
-  "test_id" : "test58",
+  "text_id" : "39",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "황보라",
-  "raw_text" : "[광고]",
-  "received_at" : 1788939072000
+  "raw_sender" : "j1_x9zdb",
+  "raw_text" : "[tomorrow, hello]",
+  "msg_time" : "1717987920000"
 }

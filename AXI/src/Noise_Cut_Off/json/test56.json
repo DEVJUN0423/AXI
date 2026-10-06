@@ -1,7 +1,7 @@
 {
-  "test_id" : "test77",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "안소희",
-  "raw_text" : "[왜?]",
-  "received_at" : 1788940212000
+  "text_id" : "56",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "사공길동",
+  "raw_text" : "[학교, apple]",
+  "msg_time" : "1783529340000"
 }

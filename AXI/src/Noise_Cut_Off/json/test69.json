@@ -1,7 +1,7 @@
 {
-  "test_id" : "test98",
+  "text_id" : "69",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "서준혁",
-  "raw_text" : "[기지개, 좀, 켜고, 쉬었다, 하자, 너무, 오래, 앉아있었어]",
-  "received_at" : 1788941472000
+  "raw_sender" : "남궁서윤",
+  "raw_text" : "[고양]",
+  "msg_time" : "1765154040000"
 }

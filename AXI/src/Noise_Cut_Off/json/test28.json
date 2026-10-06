@@ -1,7 +1,7 @@
 {
-  "test_id" : "test43",
+  "text_id" : "28",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "신예은",
-  "raw_text" : "[내일, 예약, 확인, 부탁드립니다.]",
-  "received_at" : 1788938172000
+  "raw_sender" : "v5gtodr2",
+  "raw_text" : "[사]",
+  "msg_time" : "1726903200000"
 }

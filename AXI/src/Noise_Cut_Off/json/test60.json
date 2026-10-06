@@ -1,7 +1,7 @@
 {
-  "test_id" : "test84",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "한지민",
-  "raw_text" : "[도착하면, 연락해줘!]",
-  "received_at" : 1788940632000
+  "text_id" : "60",
+  "app_package" : "SMS",
+  "raw_sender" : "임서윤",
+  "raw_text" : "[computer, computer]",
+  "msg_time" : "1708896120000"
 }

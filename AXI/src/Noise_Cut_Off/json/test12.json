@@ -1,7 +1,7 @@
 {
-  "test_id" : "test18",
+  "text_id" : "12",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "강지원",
-  "raw_text" : "[인스타, 아이디, 전달해주시면, 확인해볼게요]",
-  "received_at" : 1788936672000
+  "raw_sender" : "오민수",
+  "raw_text" : "[tomorrow, tomorrow]",
+  "msg_time" : "1775151300000"
 }

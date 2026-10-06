@@ -1,7 +1,7 @@
 {
-  "test_id" : "test40",
+  "text_id" : "26",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "서준혁",
-  "raw_text" : "[오늘, 저녁, 야근할, 것, 같은데, 먼저, 퇴근해~]",
-  "received_at" : 1788937992000
+  "raw_sender" : "_vnti1d",
+  "raw_text" : "[keyboard, keyboard]",
+  "msg_time" : "1784543820000"
 }

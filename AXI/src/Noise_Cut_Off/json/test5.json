@@ -1,7 +1,7 @@
 {
-  "test_id" : "test8",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "윤도현",
-  "raw_text" : "[내일, 예약, 확인, 부탁드립니다.]",
-  "received_at" : 1788936072000
+  "text_id" : "5",
+  "app_package" : "SMS",
+  "raw_sender" : "사공동해",
+  "raw_text" : "[하늘, game, 바다]",
+  "msg_time" : "1763692140000"
 }

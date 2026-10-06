@@ -1,7 +1,7 @@
 {
-  "test_id" : "test1",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "임수빈",
-  "raw_text" : "[내일, 예약, 확인, 부탁드립니다.]",
-  "received_at" : 1788935652000
+  "text_id" : "1",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "이서현",
+  "raw_text" : "[hello]",
+  "msg_time" : "1707134820000"
 }

@@ -1,7 +1,7 @@
 {
-  "test_id" : "test74",
+  "text_id" : "54",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "안소희",
-  "raw_text" : "[날씨, 너무, 좋은데, 산책이나, 하러, 갈까?]",
-  "received_at" : 1788940032000
+  "raw_sender" : "홍지훈",
+  "raw_text" : "[game, 사]",
+  "msg_time" : "1794312780000"
 }

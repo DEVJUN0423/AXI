@@ -1,7 +1,7 @@
 {
-  "test_id" : "test52",
+  "text_id" : "34",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "윤도현",
-  "raw_text" : "[인스타, 아이디, 전달해주시면, 확인해볼게요]",
-  "received_at" : 1788938712000
+  "raw_sender" : "9c6chl23",
+  "raw_text" : "[커피, 내일]",
+  "msg_time" : "1771215540000"
 }

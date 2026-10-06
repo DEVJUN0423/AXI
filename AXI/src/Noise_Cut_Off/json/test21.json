@@ -1,7 +1,7 @@
 {
-  "test_id" : "test29",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "김민수",
-  "raw_text" : "[광고]",
-  "received_at" : 1788937332000
+  "text_id" : "21",
+  "app_package" : "SMS",
+  "raw_sender" : "4ubg4yq",
+  "raw_text" : "[서울, keyboard, 오늘]",
+  "msg_time" : "1741729140000"
 }

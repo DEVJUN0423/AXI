@@ -1,7 +1,7 @@
 {
-  "test_id" : "test38",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "이서연",
-  "raw_text" : "[수고]",
-  "received_at" : 1788937872000
+  "text_id" : "25",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "남궁서현",
+  "raw_text" : "[network]",
+  "msg_time" : "1757698980000"
 }

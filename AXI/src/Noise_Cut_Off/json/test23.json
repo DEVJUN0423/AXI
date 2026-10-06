@@ -1,7 +1,7 @@
 {
-  "test_id" : "test34",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "박지훈",
-  "raw_text" : "[날씨, 너무, 좋은데, 산책이나, 하러, 갈까?]",
-  "received_at" : 1788937632000
+  "text_id" : "23",
+  "app_package" : "SMS",
+  "raw_sender" : "제갈지훈",
+  "raw_text" : "[학교, apple]",
+  "msg_time" : "1734253140000"
 }

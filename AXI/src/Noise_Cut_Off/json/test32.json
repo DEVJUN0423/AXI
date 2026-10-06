@@ -1,7 +1,7 @@
 {
-  "test_id" : "test49",
+  "text_id" : "32",
   "app_package" : "com.kakao.talk",
-  "raw_sender" : "김민수",
-  "raw_text" : "[회의록, 정리해서, 메일, 공유드렸습니다., 확인, 부탁드립니다.]",
-  "received_at" : 1788938532000
+  "raw_sender" : "독고동해",
+  "raw_text" : "[게임, 바다]",
+  "msg_time" : "1709622780000"
 }

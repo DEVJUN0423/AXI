@@ -1,7 +1,7 @@
 {
-  "test_id" : "test44",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "황보라",
-  "raw_text" : "[택배, 배송, 완료되었다고, 문자, 왔네!]",
-  "received_at" : 1788938232000
+  "text_id" : "29",
+  "app_package" : "SMS",
+  "raw_sender" : "신서윤",
+  "raw_text" : "[테스트, 서울]",
+  "msg_time" : "1746457620000"
 }

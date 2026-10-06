@@ -1,8 +1,16 @@
 package Noise_Cut_Off;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import org.json.simple.parser.ParseException;
+
+import Noise_Cut_Off.AxiDb.OracleDB;
+import Noise_Cut_Off.AxiDb.UserDataDao;
+import Noise_Cut_Off.AxiDb.UserDataDto;
+import Noise_Cut_Off.AxiDb.UserTextDao;
+import Noise_Cut_Off.AxiDb.UserTextDto;
+import Noise_Cut_Off.AxiDb.dbInsertRun;
 
 
 // MessagerPreprocessor.java 통합 실행 함수
@@ -11,7 +19,7 @@ class Nco {
 	  FileManager manager = new FileManager();
 	  Regex worldNormal = new Regex();
 	
-	void NcoRun() throws IOException, ParseException {
+	Boolean NcoRun() throws IOException, ParseException {
 		  
 			int setcount = reader.fileCount(); //메시지를 보낸 횟수 = 저장된 파일 개수
 		  
@@ -32,28 +40,25 @@ class Nco {
 			
 			//최종 파일 저장
 			worldNormal.renamerawtext();
+			
+			return true;
 	}
 }
 public class AXI {
 
-	public static void main(String[] args) throws IOException, ParseException {
+	public static void main(String[] args) throws Exception {
+		JsonReader reader = new JsonReader();
 		Nco nco = new Nco();
+        OracleDB oracleDB = new OracleDB();
+        UserTextDao utdao = new UserTextDao(oracleDB);
+        UserDataDao uddao = new UserDataDao(oracleDB);
+        dbInsertRun runner = new dbInsertRun();
+        
 		// 전처리 통함 실행 함수 json 에 다시 저장됨
 //		nco.NcoRun();
-//		
-//        // 1. 전처리 (기존 로직)
-//        String rawMessage = "안녕! 오늘 6시에 강남역에서 보자";
-//        String preprocessed = MessagePreprocessor.process(rawMessage); // 예시 메서드명
-//
-//        // 2. DTO로 포장
-//        UserTextDto dto = new UserTextDto(preprocessed, "kakao", 1);
-//
-//        // 3. DB 저장
-//        OracleDB oracleDB = new OracleDB();
-//        UserTextDao dao = new UserTextDao(oracleDB);
-//        int newTextId = dao.insert(dto);
-//
-//        System.out.println("저장 완료, text_id = " + newTextId);
+        
+        runner.run();   // dbInsertRun의 로직을 여기서 실행
+		System.out.println("Db 전송 완료");
 
 	}
 

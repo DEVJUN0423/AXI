@@ -1,7 +1,7 @@
 {
-  "test_id" : "test86",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "정현우",
-  "raw_text" : "[오늘, 회비, 15000원, 신한, 계좌, 부탁해]",
-  "received_at" : 1788940752000
+  "text_id" : "61",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "1h7ite7s",
+  "raw_text" : "[제1, 획득부(202), 제1, 컨퍼런스, 서버(102), 접속한, 제1, 단말(106)의, 식별정보, 획득한다.]",
+  "msg_time" : "1725402360000"
 }

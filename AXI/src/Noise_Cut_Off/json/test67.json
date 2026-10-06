@@ -1,7 +1,7 @@
 {
-  "test_id" : "test95",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "황보라",
-  "raw_text" : "[비밀번호, 변경, 요청, 승인, 번호, [849201], 입니다.]",
-  "received_at" : 1788941292000
+  "text_id" : "67",
+  "app_package" : "com.instagram.android",
+  "raw_sender" : "독고길동",
+  "raw_text" : "[컴퓨터]",
+  "msg_time" : "1722262800000"
 }

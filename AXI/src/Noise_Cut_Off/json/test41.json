@@ -1,7 +1,7 @@
 {
-  "test_id" : "test60",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "임수빈",
-  "raw_text" : "[내일, 예약, 확인, 부탁드립니다.]",
-  "received_at" : 1788939192000
+  "text_id" : "41",
+  "app_package" : "SMS",
+  "raw_sender" : "정지호",
+  "raw_text" : "[happy, today]",
+  "msg_time" : "1717105440000"
 }

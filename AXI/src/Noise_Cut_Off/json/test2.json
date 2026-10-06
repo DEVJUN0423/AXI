@@ -1,7 +1,7 @@
 {
-  "test_id" : "test3",
-  "app_package" : "com.kakao.talk",
-  "raw_sender" : "강지원",
-  "raw_text" : "[도착하면, 연락해줘!]",
-  "received_at" : 1788935772000
+  "text_id" : "2",
+  "app_package" : "SMS",
+  "raw_sender" : "이서현",
+  "raw_text" : "[게임, 안녕하세요]",
+  "msg_time" : "1715982420000"
 }

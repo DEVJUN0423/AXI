@@ -1,4 +1,4 @@
-package Noise_Cut_Off;
+package Noise_Cut_Off.AxiDb;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,17 +18,19 @@ public class UserTextDao {
      * 전처리된 메시지를 user_text 테이블에 저장하고,
      * 자동 생성된 text_id를 반환한다.
      */
-    public int insert(UserTextDto dto) {
-        String sql = "INSERT INTO user_text (user_text, app_type, user_id) "
-                    + "VALUES (?, ?, ?)";
+    // user_test table insert
+    public int insert(UserTextDto utdto) {
+        String sql = "INSERT INTO user_text (user_text, app_type, user_id, msg_time) "
+                    + "VALUES (?, ?, ?, ?)";
 
         try (Connection conn = oracleDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(
                      sql, new String[] { "text_id" })) {
 
-            ps.setString(1, dto.getUserText());
-            ps.setString(2, dto.getAppType());
-            ps.setInt(3, dto.getUserId());
+            ps.setString(1, utdto.getUserText());
+            ps.setString(2, utdto.getAppType());
+            ps.setString(3, utdto.getUserId());
+            ps.setTimestamp(4, utdto.getMsgTime());
 
             ps.executeUpdate();
 

@@ -20,12 +20,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-class JsonReader {
+public class JsonReader {
 	// json 파일 보낸 메시지 불러오기 함수
-	String rawText (String type, int getnum) 
+	public String rawText (String type, int getnum) 
 	throws IOException, ParseException {
 		JSONParser parser = new JSONParser();
-		try (Reader reader = new FileReader("src/Noise_Cut_Off/json/test" + getnum + ".json");){
+
+		try (Reader reader = new FileReader("src/Noise_Cut_Off/json/test" + getnum + ".json");) {
 //			/Users/yanghyunjun/git/AXI/AXI/src/Noise_Cut_Off/json/test1.json 임시 상대 경로
 			JSONObject jsonObject = (JSONObject) parser.parse(reader);	
 			
@@ -34,7 +35,7 @@ class JsonReader {
 		}
 	}
 	// 파일 개수 세기 함수
-    int fileCount() {
+    public int fileCount() {
     	int fileCount;
         File dir = new File("src/Noise_Cut_Off/json");
         
@@ -285,6 +286,3 @@ class Regex extends JsonReader {
     }
 }
 
-public class MessagePreprocessor {
-	
-}
