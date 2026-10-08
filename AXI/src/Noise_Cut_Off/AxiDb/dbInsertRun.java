@@ -2,6 +2,7 @@ package Noise_Cut_Off.AxiDb;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,7 +21,6 @@ public class dbInsertRun {
     private final UserDataDao uddao;
     private final getData gdata;
 
-
     public dbInsertRun() {
         this.reader = new JsonReader();
         this.oracleDB = new OracleDB();
@@ -32,6 +32,12 @@ public class dbInsertRun {
 
 class getData {
 	
+    private final Connection conn;
+
+	getData (Connection conn){
+		this.conn = conn; 
+	}
+	
 	// DB 조회해서 user_name 과 같은 이름 = 같은 user_id 부여
 	String sameName(String type, int num) throws Exception {
 
@@ -40,8 +46,7 @@ class getData {
 	    // WHERE 절로 DB가 직접 필터링하게 함 (전체 조회 X)
 	    String sql = "SELECT USER_ID FROM USER_DATA WHERE USER_NAME = ?";
 
-	    try (Connection conn = oracleDB.getConnection();
-	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
 	        ps.setString(1, name1);
 
@@ -65,8 +70,7 @@ class getData {
 	    // WHERE 절로 DB가 직접 필터링하게 함 (전체 조회 X)
 	    String sql = "SELECT IS_MAPPED FROM USER_DATA WHERE USER_NAME = ?";
 
-	    try (Connection conn = oracleDB.getConnection();
-	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
 	        ps.setString(1, name1);
 
@@ -163,8 +167,7 @@ class getData {
 		
 //	    System.out.println("getUserId userName" + userName);
 	    
-	    try (Connection conn = oracleDB.getConnection();
-		         PreparedStatement ps = conn.prepareStatement(sql)) {
+	    try (PreparedStatement ps = conn.prepareStatement(sql)) {
 	        ps.setString(1, userName);
 	        
 	        try (ResultSet rs = ps.executeQuery()) {
@@ -182,7 +185,8 @@ class getData {
 
 //통합 실행 함수
     public void run() throws Exception {
-    	getData getdata = new getData();
+    	Connection conn = oracleDB.getConnection();
+    	getData getdata = new getData(conn);
     	
         for (int i = 1; i <= reader.fileCount(); i++) {
 			String userId = getdata.sameName("raw_sender", i);
@@ -193,51 +197,40 @@ class getData {
 	        int isMapped = getdata.apptype("app_package", i);
             Timestamp msgTime = new Timestamp(Long.parseLong(reader.rawText("msg_time", i)));
             
-//            System.out.println("=====[ USER_DATA insert ]=====");
-//			System.out.println(i + " userId: " + userId);
-//			System.out.println(i + " userName: " + userName);
-//	        System.out.println(i + " isMapped: " + isMapped);
+         /* System.out.println("=====[ USER_DATA insert ]=====");
+			System.out.println(i + " userId: " + userId);
+			System.out.println(i + " userName: " + userName);
+	        System.out.println(i + " isMapped: " + isMapped); */
 	        
-            
             // user_data table insert
             if (userId == null) {
     	        UserDataDto uddto = new UserDataDto(userId, userName, isMapped);
     	        
-    	        int newDataId = uddao.insert(uddto);
+    	        int newDataId = uddao.insert(conn, uddto);
 //    	        System.out.println(i + " newDataId: " + newDataId);
-            } 
-//            else if (isMapped != getdata.ismapped("raw_sender", i)) {
-//            	String sql = "UPDATE USER_DATA SET IS_MAPPED = ? WHERE USER_ID = ?";
-//
-//            	try (Connection conn = oracleDB.getConnection();
-//            	     PreparedStatement ps = conn.prepareStatement(sql)) {
-//
-//            	    ps.setInt(1, isMapped);  // 변경할 isMapped 값 (예: 1, 2, 3)
-//            	    ps.setString(2, userId); // 대상 userId
-//
-//            	    int updatedRows = ps.executeUpdate();
-//            	    System.out.println("IS_MAPPED 업데이트 완료 (수정된 행 수: " + updatedRows + ")");
-//            	}
-//            }
-            else {
+            } else {
             	System.out.println("DB에 이미 이름 존재 USER_DATA 저장 건너뜀");
             }
-	        
+            
+	        // 처음 저장되는 인물 -> 초기 userId = null 다라서 user_text 테이블 저장 불가능 user_data 저장시 user_id 자동 생성 조회후 user_text 추가
             userId = getdata.getUserId(reader.rawText("raw_sender", i));
             
-//            System.out.println("=====[ USER_TEXT insert ]=====");
-//			System.out.println(i + " text: " + preText);
-//	        System.out.println(i + " app: " + appType);
-//			System.out.println(i + " userId: " + userId);
-//            System.out.println(i + " msgTime: " + msgTime);
+         /* System.out.println("=====[ USER_TEXT insert ]=====");
+			System.out.println(i + " text: " + preText);
+	        System.out.println(i + " app: " + appType);
+			System.out.println(i + " userId: " + userId);
+            System.out.println(i + " msgTime: " + msgTime); */
             
 //	      	String userText, String appType, int msgTime, Boolean isSummarized
 	        UserTextDto utdto = new UserTextDto(preText, appType, userId, msgTime);
 
-	        int newTextId = utdao.insert(utdto);
+	        int newTextId = utdao.insert(conn, utdto);
 //	        System.out.println(i + " newTextId: " + newTextId);
-//	        
-//            System.out.println("================================");
+	        
+	        //DB 에 전송한 파일명 리스트
+	    	ArrayList<Integer> removeList = new ArrayList<>();
+	    	
+	        
         }
     }
 }

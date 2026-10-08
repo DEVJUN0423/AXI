@@ -29,10 +29,11 @@ class Nco {
 				String rawtext = reader.rawText("raw_text", i);
 				// json rawtext 보는 print
 //		      System.out.println(i + " text: " + rawtext);
-		      // rawtext 의미 없는 파일 제거 리스트 생성 함수
+				
+//            rawtext 의미 없는 파일 제거 리스트 생성 함수
 		      manager.textsum(i, rawtext);
 			}
-//			 정규화 탈락 파일 제거 + 파일 이름 정리
+//			정규화 탈락 파일 제거 + 파일 이름 정리
 			manager.removeFile();
 			
 			//정규화 통과한 문자열 조사 제거 함수
@@ -54,12 +55,17 @@ public class AXI {
         UserDataDao uddao = new UserDataDao(oracleDB);
         dbInsertRun runner = new dbInsertRun();
         
+        int num;
 		// 전처리 통함 실행 함수 json 에 다시 저장됨
 //		nco.NcoRun();
+        System.out.println("파일 NCO 완료");
         
-        runner.run();   // dbInsertRun의 로직을 여기서 실행
+        // dbInsertRun의 로직을 여기서 실행
+        runner.run();
 		System.out.println("Db 전송 완료");
 
+		
+		
 	}
 
 }

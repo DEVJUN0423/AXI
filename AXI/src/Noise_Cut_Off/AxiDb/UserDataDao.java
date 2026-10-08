@@ -14,12 +14,11 @@ public class UserDataDao {
     }
     
 	// user_data table insert
-	public int insert(UserDataDto uddto) {
+	public int insert(Connection conn, UserDataDto uddto) {
 	    String sql = "INSERT INTO user_data (user_name, is_mapped) "
 	                + "VALUES (?, ?)";
 
-	    try (Connection conn = oracleDB.getConnection();
-	         PreparedStatement ps = conn.prepareStatement(
+	    try (PreparedStatement ps = conn.prepareStatement(
 	                 sql, new String[] { "user_id" })) {
 
 	        ps.setString(1, uddto.getUserName());

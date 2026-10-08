@@ -19,12 +19,11 @@ public class UserTextDao {
      * 자동 생성된 text_id를 반환한다.
      */
     // user_test table insert
-    public int insert(UserTextDto utdto) {
+    public int insert(Connection conn, UserTextDto utdto) {
         String sql = "INSERT INTO user_text (user_text, app_type, user_id, msg_time) "
                     + "VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = oracleDB.getConnection();
-             PreparedStatement ps = conn.prepareStatement(
+        try (PreparedStatement ps = conn.prepareStatement(
                      sql, new String[] { "text_id" })) {
 
             ps.setString(1, utdto.getUserText());
