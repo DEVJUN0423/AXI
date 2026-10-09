@@ -1,71 +1,35 @@
-package Noise_Cut_Off;
+package main;
 
-import java.io.IOException;
-import java.sql.Timestamp;
+import Noise_Cut_Off.FileManager;
+import Noise_Cut_Off.JsonReader;
+import Noise_Cut_Off.ncoRun;
 
-import org.json.simple.parser.ParseException;
-
-import Noise_Cut_Off.AxiDb.OracleDB;
-import Noise_Cut_Off.AxiDb.UserDataDao;
-import Noise_Cut_Off.AxiDb.UserDataDto;
-import Noise_Cut_Off.AxiDb.UserTextDao;
-import Noise_Cut_Off.AxiDb.UserTextDto;
-import Noise_Cut_Off.AxiDb.dbInsertRun;
+import AxiDb.dbInsertRun;
 
 
-// MessagerPreprocessor.java 통합 실행 함수
-class Nco {
-	  JsonReader reader = new JsonReader();
-	  FileManager manager = new FileManager();
-	  Regex worldNormal = new Regex();
-	
-	Boolean NcoRun() throws IOException, ParseException {
-		  
-			int setcount = reader.fileCount(); //메시지를 보낸 횟수 = 저장된 파일 개수
-		  
-		  // 텍스트 정보 정규화
-			for(int i =1; i<=setcount; i++) {
-				// rawtext 문자열에 json 파일에서 raw_text type 에 저장됨 문자열 불러오는 함수 호출 후 저장
-				String rawtext = reader.rawText("raw_text", i);
-				// json rawtext 보는 print
-//		      System.out.println(i + " text: " + rawtext);
-				
-//            rawtext 의미 없는 파일 제거 리스트 생성 함수
-		      manager.textsum(i, rawtext);
-			}
-//			정규화 탈락 파일 제거 + 파일 이름 정리
-			manager.removeFile();
-			
-			//정규화 통과한 문자열 조사 제거 함수
-			worldNormal.worldSelecter();
-			
-			//최종 파일 저장
-			worldNormal.renamerawtext();
-			
-			return true;
-	}
-}
 public class AXI {
 
 	public static void main(String[] args) throws Exception {
-		JsonReader reader = new JsonReader();
-		Nco nco = new Nco();
-        OracleDB oracleDB = new OracleDB();
-        UserTextDao utdao = new UserTextDao(oracleDB);
-        UserDataDao uddao = new UserDataDao(oracleDB);
+    	
+		JsonReader reader = new JsonReader("src/Noise_Cut_Off/json/test", ".json");
+		FileManager manager = new FileManager("src/Noise_Cut_Off/json/test", ".json");
+		ncoRun nco = new ncoRun();
         dbInsertRun runner = new dbInsertRun();
         
-        int num;
+
 		// 전처리 통함 실행 함수 json 에 다시 저장됨
-//		nco.NcoRun();
-        System.out.println("파일 NCO 완료");
+		nco.NcoRun();
         
         // dbInsertRun의 로직을 여기서 실행
         runner.run();
 		System.out.println("Db 전송 완료");
+        
+		int temp = reader.fileCount();
+		for(int i = 1; i <=temp; i++) {
+			manager.removeFile(i);
+		}
+		System.out.println("db 전송후 남은 파일 제거 완료");
 
-		
-		
 	}
 
 }

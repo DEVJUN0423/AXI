@@ -1,4 +1,4 @@
-package Noise_Cut_Off.AxiDb;
+package AxiDb;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

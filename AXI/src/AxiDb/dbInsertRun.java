@@ -1,14 +1,11 @@
-package Noise_Cut_Off.AxiDb;
+package AxiDb;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import org.json.simple.parser.ParseException;
 
 import Noise_Cut_Off.JsonReader;
@@ -19,14 +16,11 @@ public class dbInsertRun {
     private final OracleDB oracleDB;
     private final UserTextDao utdao;
     private final UserDataDao uddao;
-    private final getData gdata;
-
     public dbInsertRun() {
-        this.reader = new JsonReader();
+        this.reader = new JsonReader("src/Noise_Cut_Off/json/test", ".json");
         this.oracleDB = new OracleDB();
         this.utdao = new UserTextDao(oracleDB);
         this.uddao = new UserDataDao(oracleDB);
-		this.gdata = null;
     }
 
 
@@ -41,7 +35,7 @@ class getData {
 	// DB 조회해서 user_name 과 같은 이름 = 같은 user_id 부여
 	String sameName(String type, int num) throws Exception {
 
-	    String name1 = reader.rawText(type, num);
+	    String name1 = reader.getJsonType(type, num);
 
 	    // WHERE 절로 DB가 직접 필터링하게 함 (전체 조회 X)
 	    String sql = "SELECT USER_ID FROM USER_DATA WHERE USER_NAME = ?";
@@ -65,7 +59,7 @@ class getData {
 	// DB 조회해서 user_name과 같은 ismapped return
 	Integer ismapped(String type, int num) throws Exception {
 
-	    String name1 = reader.rawText(type, num);
+	    String name1 = reader.getJsonType(type, num);
 
 	    // WHERE 절로 DB가 직접 필터링하게 함 (전체 조회 X)
 	    String sql = "SELECT IS_MAPPED FROM USER_DATA WHERE USER_NAME = ?";
@@ -150,7 +144,7 @@ class getData {
 	
 	// json 인스타, 카카오, 메시지 감지 각각 DB is_mapped  1, 2, 3 저장 0은 감지하지 못함
 	int apptype (String type, int num) throws IOException, ParseException {
-		String app = reader.rawText(type, num);
+		String app = reader.getJsonType(type, num);
 		if (app.equals("com.instagram.android")) {
 			return 1;
 		}else if ( app.equals("com.kakao.talk")) {
@@ -185,17 +179,18 @@ class getData {
 
 //통합 실행 함수
     public void run() throws Exception {
+    	
     	Connection conn = oracleDB.getConnection();
     	getData getdata = new getData(conn);
     	
         for (int i = 1; i <= reader.fileCount(); i++) {
 			String userId = getdata.sameName("raw_sender", i);
-			String userName = reader.rawText("raw_sender", i);
-			String preText = reader.rawText("raw_text", i);
-	        String appType = reader.rawText("app_package", i);
+			String userName = reader.getJsonType("raw_sender", i);
+			String preText = reader.getJsonType("raw_text", i);
+	        String appType = reader.getJsonType("app_package", i);
 //	        int isMapped = getdata.mapped(i);
 	        int isMapped = getdata.apptype("app_package", i);
-            Timestamp msgTime = new Timestamp(Long.parseLong(reader.rawText("msg_time", i)));
+            Timestamp msgTime = new Timestamp(Long.parseLong(reader.getJsonType("msg_time", i)));
             
          /* System.out.println("=====[ USER_DATA insert ]=====");
 			System.out.println(i + " userId: " + userId);
@@ -213,7 +208,7 @@ class getData {
             }
             
 	        // 처음 저장되는 인물 -> 초기 userId = null 다라서 user_text 테이블 저장 불가능 user_data 저장시 user_id 자동 생성 조회후 user_text 추가
-            userId = getdata.getUserId(reader.rawText("raw_sender", i));
+            userId = getdata.getUserId(reader.getJsonType("raw_sender", i));
             
          /* System.out.println("=====[ USER_TEXT insert ]=====");
 			System.out.println(i + " text: " + preText);
@@ -228,9 +223,7 @@ class getData {
 //	        System.out.println(i + " newTextId: " + newTextId);
 	        
 	        //DB 에 전송한 파일명 리스트
-	    	ArrayList<Integer> removeList = new ArrayList<>();
-	    	
-	        
+			
         }
     }
 }
