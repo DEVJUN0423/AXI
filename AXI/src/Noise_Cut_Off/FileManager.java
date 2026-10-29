@@ -17,11 +17,11 @@ public class FileManager extends JsonReader{
 	int removefilecount;
 	
 	//파일제거 -> 이름 변경 -> 파일 저장 함수 
-	public void removeFile (int getnum) {
+	public int removeFile (int getnum) {
 		
 		//제거할 파일 번호 리스트 크기 저장
-		System.out.println("[DEBUG] 제거할 파일 번호" + getnum);
-		System.out.println("[DEBUG] 총 파일 개수: " + fileCount());
+//		System.out.println("[DEBUG] 제거할 파일 번호" + getnum);
+//		System.out.println("[DEBUG] 총 파일 개수: " + fileCount());
 
 		// 파일제거
 		File deleteFile = new File(getFirstlink() + getnum + getLastlink());
@@ -29,6 +29,9 @@ public class FileManager extends JsonReader{
 			
 //		System.out.println("[DEBUG] 제거 완료한 파일 명: "+ getnum);s
 //		System.out.println("==================================");
+		
+		// 제거된 파일번호 반환
+		return getnum;
 	}
 	
 	public void renameFile(int getnum) {
@@ -59,7 +62,7 @@ public class FileManager extends JsonReader{
 		        System.out.println("[ERROR] 파일 이름 변경 실패! (파일이 없거나 사용 중입니다)");
 		        e.printStackTrace();
 		    }
-			 System.out.println("[DEGUB] "+ i +" test" + smallFileName + "-> test" +changeFileName);
+			 // System.out.println("[DEGUB] "+ i +" test" + smallFileName + "-> test" +changeFileName);
 			
 			// 변경할 변경할 이름 변수 +1
 			smallFileName ++; changeFileName++;

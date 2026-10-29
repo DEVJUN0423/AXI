@@ -6,6 +6,10 @@ import Noise_Cut_Off.ncoRun;
 
 import AxiDb.dbInsertRun;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AXI {
 	// ===== 경로는 여기 한 곳에서만 선언 =====
@@ -21,32 +25,51 @@ public class AXI {
 		JsonReader reader = new JsonReader(PATH, EXT);
 		FileManager manager = new FileManager(PATH, EXT);
 		ncoRun nco = new ncoRun(PATH, EXT, FILTER_PATH);
-		dbInsertRun runner = new dbInsertRun(reader);
-    	
+		dbInsertRun db = new dbInsertRun(reader);
+		
+        List<Integer> fileDeleteNum = new ArrayList<>();
         
-        System.out.println(reader.fileCount() + " = file count");
+		Instant start = Instant.now();
         
         if (reader.fileCount() == 0) {
         	System.out.println("경로에 파일이 없거나 경로가 잘못되었습니다. ");
         } else {
-    		// 전처리 통함 실행 함수 json 에 다시 저장됨
-    		nco.NcoRun();
-            
-            // dbInsertRun의 로직을 여기서 실행
-            runner.run();
+    		// 1. 전처리 통함 실행 함수 json 에 다시 저장됨
+        	fileDeleteNum = nco.NcoRun();
+        	System.out.println(fileDeleteNum);
+            // 2. dbInsertRun의 로직을 여기서 실행
+            db.run(fileDeleteNum);
     		System.out.println("Db 전송 완료");
             
     		int temp = reader.fileCount();
     		for(int i = 1; i <=temp; i++) {
-    			manager.removeFile(i);
+    			if(fileDeleteNum.contains(i)) {
+    				System.out.println(i + "번 파일 삭제됨 DBInsert후 삭제단계 건너뜀");
+    			} else {
+    				// DB 전송후 남은 파일 제거
+        			manager.removeFile(i);
+    			}
     		}
+    		
     		System.out.println("db 전송후 남은 파일 제거 완료");
         }
+        
+        Instant end = Instant.now();
+        Duration duration = Duration.between(start, end);
+
+        System.out.println("실행 시간(밀리초): " + duration.toMillis() + " ms");
 
 	}
 
 }
 
+/* s
+- json 파일 1000개 
+1. nco time = 449 mss
+2. dbinsert time = 133,816ms - 449ms = 133,367ms
+3. remove time =
+
+*/
 /*type(타입) : title(제목)
 
 body(본문, 생략 가능)

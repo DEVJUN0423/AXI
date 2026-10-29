@@ -3,6 +3,7 @@ package AxiDb;
 import java.io.IOException;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -181,51 +182,56 @@ class getData {
 }
 
 //통합 실행 함수
-    public void run() throws Exception {
+    public void run(List<Integer> fileDeleteNum) throws Exception {
     	
     	Connection conn = oracleDB.getConnection();
     	getData getdata = new getData(conn);
+		int totalFileCount = reader.fileCount();
     	
-        for (int i = 1; i <= reader.fileCount(); i++) {
-			String userId = getdata.sameName("raw_sender", i);
-			String userName = reader.getJsonType("raw_sender", i);
-			String preText = reader.getJsonType("raw_text", i);
-	        String appType = reader.getJsonType("app_package", i);
-//	        int isMapped = getdata.mapped(i);
-	        int isMapped = getdata.apptype("app_package", i);
-            Timestamp msgTime = new Timestamp(Long.parseLong(reader.getJsonType("msg_time", i)));
-            
-         /* System.out.println("=====[ USER_DATA insert ]=====");
-			System.out.println(i + " userId: " + userId);
-			System.out.println(i + " userName: " + userName);
-	        System.out.println(i + " isMapped: " + isMapped); */
-	        
-            // user_data table insert
-            if (userId == null) {
-    	        UserDataDto uddto = new UserDataDto(userId, userName, isMapped);
-    	        
-    	        int newDataId = uddao.insert(conn, uddto);
-//    	        System.out.println(i + " newDataId: " + newDataId);
-            } else {
-            	System.out.println("DB에 이미 이름 존재 USER_DATA 저장 건너뜀");
-            }
-            
-	        // 처음 저장되는 인물 -> 초기 userId = null 다라서 user_text 테이블 저장 불가능 user_data 저장시 user_id 자동 생성 조회후 user_text 추가
-            userId = getdata.getUserId(reader.getJsonType("raw_sender", i));
-            
-         /* System.out.println("=====[ USER_TEXT insert ]=====");
-			System.out.println(i + " text: " + preText);
-	        System.out.println(i + " app: " + appType);
-			System.out.println(i + " userId: " + userId);
-            System.out.println(i + " msgTime: " + msgTime); */
-            
-//	      	String userText, String appType, int msgTime, Boolean isSummarized
-	        UserTextDto utdto = new UserTextDto(preText, appType, userId, msgTime);
-
-	        int newTextId = utdao.insert(conn, utdto);
-//	        System.out.println(i + " newTextId: " + newTextId);
-	        
-	        //DB 에 전송한 파일명 리스트
+        for (int i = 1; i <= totalFileCount; i++) {
+        	if(fileDeleteNum.contains(i)) {
+				System.out.println(i + "번 파일 삭제됨 DBInsert 건너뜀");
+        	} else {
+				String userId = getdata.sameName("raw_sender", i);
+				String userName = reader.getJsonType("raw_sender", i);
+				String preText = reader.getJsonType("raw_text", i);
+		        String appType = reader.getJsonType("app_package", i);
+	//	        int isMapped = getdata.mapped(i);
+		        int isMapped = getdata.apptype("app_package", i);
+	            Timestamp msgTime = new Timestamp(Long.parseLong(reader.getJsonType("msg_time", i)));
+	            
+	         /* System.out.println("=====[ USER_DATA insert ]=====");
+				System.out.println(i + " userId: " + userId);
+				System.out.println(i + " userName: " + userName);
+		        System.out.println(i + " isMapped: " + isMapped); */
+		        
+	            // user_data table insert
+	            if (userId == null) {
+	    	        UserDataDto uddto = new UserDataDto(userId, userName, isMapped);
+	    	        
+	    	        int newDataId = uddao.insert(conn, uddto);
+	//    	        System.out.println(i + " newDataId: " + newDataId);
+	            } else {
+	            	System.out.println("DB에 이미 이름 존재 USER_DATA 저장 건너뜀");
+	            }
+	            
+		        // 처음 저장되는 인물 -> 초기 userId = null 다라서 user_text 테이블 저장 불가능 user_data 저장시 user_id 자동 생성 조회후 user_text 추가
+	            userId = getdata.getUserId(reader.getJsonType("raw_sender", i));
+	            
+	         /* System.out.println("=====[ USER_TEXT insert ]=====");
+				System.out.println(i + " text: " + preText);
+		        System.out.println(i + " app: " + appType);
+				System.out.println(i + " userId: " + userId);
+	            System.out.println(i + " msgTime: " + msgTime); */
+	            
+	//	      	String userText, String appType, int msgTime, Boolean isSummarized
+		        UserTextDto utdto = new UserTextDto(preText, appType, userId, msgTime);
+	
+		        int newTextId = utdao.insert(conn, utdto);
+	//	        System.out.println(i + " newTextId: " + newTextId);
+		        
+		        //DB 에 전송한 파일명 리스트
+        	}
 			
         }
     }
