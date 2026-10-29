@@ -1,6 +1,7 @@
 package AxiDb;
 
 import java.io.IOException;
+
 import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,14 +11,16 @@ import org.json.simple.parser.ParseException;
 
 import Noise_Cut_Off.JsonReader;
 
-public class dbInsertRun {
 
+public class dbInsertRun {
+	
     private final JsonReader reader;
     private final OracleDB oracleDB;
     private final UserTextDao utdao;
     private final UserDataDao uddao;
-    public dbInsertRun() {
-        this.reader = new JsonReader("src/Noise_Cut_Off/json/test", ".json");
+    
+    public dbInsertRun(JsonReader reader) {
+    	this.reader = reader;
         this.oracleDB = new OracleDB();
         this.utdao = new UserTextDao(oracleDB);
         this.uddao = new UserDataDao(oracleDB);

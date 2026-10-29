@@ -15,12 +15,14 @@ public class TextFilter {
 	public TextFilter (String link) {
 		this.link = link;
 	}
+	
 	public String getlink() {
 		return link;
 	}
+	
 	// 텍스트 공백 감지 함수
 	boolean textNull(int getnum, String rawtext) {
-		text = rawtext;
+		String text = rawtext;
 	    if (text == null || text.trim().isEmpty()) {
 	    	// System.out.println("[DEBUG] 공백 감지: " + getnum + "번째 파일 제거필요");
 	    	// 성공시 true 반환

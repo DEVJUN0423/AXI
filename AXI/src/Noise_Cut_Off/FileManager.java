@@ -14,7 +14,6 @@ public class FileManager extends JsonReader{
 		super(firstlink, lastlink);
 	}
 
-	JsonReader reader = new JsonReader("src/Noise_Cut_Off/json/test", ".json");
 	int removefilecount;
 	
 	//파일제거 -> 이름 변경 -> 파일 저장 함수 
@@ -22,10 +21,10 @@ public class FileManager extends JsonReader{
 		
 		//제거할 파일 번호 리스트 크기 저장
 		System.out.println("[DEBUG] 제거할 파일 번호" + getnum);
-		System.out.println("[DEBUG] 총 파일 개수: " + reader.fileCount());
+		System.out.println("[DEBUG] 총 파일 개수: " + fileCount());
 
 		// 파일제거
-		File deleteFile = new File(reader.getFirstlink() + getnum + reader.getLastlink());
+		File deleteFile = new File(getFirstlink() + getnum + getLastlink());
 		deleteFile.delete();
 			
 //		System.out.println("[DEBUG] 제거 완료한 파일 명: "+ getnum);s
@@ -35,7 +34,7 @@ public class FileManager extends JsonReader{
 	public void renameFile(int getnum) {
 		
 		// 반복 조건 변수 설정
-		int forCount = reader.fileCount() - getnum + 1;
+		int forCount = fileCount() - getnum + 1;
 		System.out.println("[DEGUB] 이름 변경 " + forCount +"번 반복예정");
 		 
 		
@@ -48,10 +47,10 @@ public class FileManager extends JsonReader{
 			// 파일 변경
 			
 			// 변경할 파일 경로
-			Path source = Paths.get(reader.getFirstlink() + smallFileName + reader.getLastlink());
+			Path source = Paths.get(getFirstlink() + smallFileName + getLastlink());
 			
 			// 변경할 파일 이름
-		    Path target = source.resolveSibling("test" + changeFileName + reader.getLastlink());
+		    Path target = source.resolveSibling("test" + changeFileName + getLastlink());
 		    // 메모해둔 source 위치의 파일을 target 이름으로 실제로 변경(Rename)해라!
 		    try {
 		        Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);

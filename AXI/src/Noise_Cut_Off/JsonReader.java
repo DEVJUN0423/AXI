@@ -1,24 +1,16 @@
 package Noise_Cut_Off;
 
-import java.util.ArrayList;
-
 import java.io.File;
+import java.util.regex.Pattern;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 
 public class JsonReader {
@@ -53,14 +45,13 @@ public class JsonReader {
 	}
 	// 파일 개수 세기 함수
     public int fileCount() {
-    	int fileCount;
-    	// 파일명 저장 문자열
-    	String fileName = "src/Noise_Cut_Off/json";
-        File dir = new File(fileName);
-        
+        File base = new File(firstlink);          // 예: src/testfile/test
+        File dir = base.getParentFile();          // 예: src/testfile
+        if (dir == null) dir = new File(".");
+        String regex = Pattern.quote(base.getName()) + "\\d+" + Pattern.quote(lastlink);
+ 
         // 파일만 필터링해서 개수 세기 (폴더는 제외)
-        File[] files = dir.listFiles((d, name) -> name.matches("test\\d+\\.json"));
-        fileCount = (files != null) ? files.length : 0;
-        return fileCount;
+        File[] files = dir.listFiles((d, name) -> name.matches(regex));
+        return (files != null) ? files.length : 0;
     }
 }

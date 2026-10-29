@@ -8,27 +8,40 @@ import AxiDb.dbInsertRun;
 
 
 public class AXI {
+	// ===== 경로는 여기 한 곳에서만 선언 =====
+	// 데이터 json 파일: PATH + 번호 + EXT  ->  src/testfile/test1.json ...
+	public static final String PATH = "src/testfile/test";
+	public static final String EXT = ".json";
+	// 노이즈 필터(agreement 목록)가 들어있는 json
+	public static final String FILTER_PATH = "src/Noise_Cut_Off/NoiseCutOff.json";
+ 
 
 	public static void main(String[] args) throws Exception {
+		
+		JsonReader reader = new JsonReader(PATH, EXT);
+		FileManager manager = new FileManager(PATH, EXT);
+		ncoRun nco = new ncoRun(PATH, EXT, FILTER_PATH);
+		dbInsertRun runner = new dbInsertRun(reader);
     	
-		JsonReader reader = new JsonReader("src/Noise_Cut_Off/json/test", ".json");
-		FileManager manager = new FileManager("src/Noise_Cut_Off/json/test", ".json");
-		ncoRun nco = new ncoRun();
-        dbInsertRun runner = new dbInsertRun();
         
-
-		// 전처리 통함 실행 함수 json 에 다시 저장됨
-		nco.NcoRun();
+        System.out.println(reader.fileCount() + " = file count");
         
-        // dbInsertRun의 로직을 여기서 실행
-        runner.run();
-		System.out.println("Db 전송 완료");
-        
-		int temp = reader.fileCount();
-		for(int i = 1; i <=temp; i++) {
-			manager.removeFile(i);
-		}
-		System.out.println("db 전송후 남은 파일 제거 완료");
+        if (reader.fileCount() == 0) {
+        	System.out.println("경로에 파일이 없거나 경로가 잘못되었습니다. ");
+        } else {
+    		// 전처리 통함 실행 함수 json 에 다시 저장됨
+    		nco.NcoRun();
+            
+            // dbInsertRun의 로직을 여기서 실행
+            runner.run();
+    		System.out.println("Db 전송 완료");
+            
+    		int temp = reader.fileCount();
+    		for(int i = 1; i <=temp; i++) {
+    			manager.removeFile(i);
+    		}
+    		System.out.println("db 전송후 남은 파일 제거 완료");
+        }
 
 	}
 

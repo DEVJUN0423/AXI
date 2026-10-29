@@ -14,7 +14,6 @@ public class Regex extends JsonReader {
 	public Regex(String firstlink, String lastlink) {
 		super(firstlink, lastlink);
 	}
-	JsonReader reader = new JsonReader("src/Noise_Cut_Off/json/test", ".json");
     
     // 바깥쪽 ArrayList는 파일들, 안쪽 ArrayList는 그 파일의 단어들을 담는 2차원 가변 배열
     ArrayList<ArrayList<String>> fileWordList = new ArrayList<>();
@@ -26,10 +25,10 @@ public class Regex extends JsonReader {
     public void worldSelecter() throws IOException, ParseException {
         fileWordList.clear(); // 실행 전 초기화
 
-        for(int i = 1; i <= reader.fileCount(); i++) {
+        for(int i = 1; i <= fileCount(); i++) {
             // 이번 파일의 단어들을 담을 '새로운 1차원 가변 배열'을 생성
             ArrayList<String> singleFileWords = new ArrayList<>();
-            String fullText = reader.getJsonType("raw_text", i);
+            String fullText = getJsonType("raw_text", i);
             String[] tokens = fullText.split("\\s+"); // 띄어쓰기로 분리
             
             for(String token : tokens) {
@@ -44,16 +43,16 @@ public class Regex extends JsonReader {
         }
         // 최종 2차원 배열 출력
         // System.out.println(fileWordList);
-        for(int i =0; i<=reader.fileCount()-1; i++) {
+        for(int i =0; i<=fileCount()-1; i++) {
 //            System.out.println(i + " " + fileWordList.get(i));
         }
     }
     // rawtext 정규화 통과 파일 저장 함수
     public void renamerawtext() {
-    	for(int i = 1; i<= reader.fileCount(); i++) {
+    	for(int i = 1; i<= fileCount(); i++) {
             try {
                 // 1. 파일 경로 지정 및 ObjectMapper 생성
-                File jsonFile = new File(reader.getFirstlink() + i + reader.getLastlink());
+                File jsonFile = new File(getFirstlink() + i + getLastlink());
                 ObjectMapper mapper = new ObjectMapper();
 
                 // 2. JSON 파일을 ObjectNode로 읽어오기
